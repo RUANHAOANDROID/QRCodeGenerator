@@ -18,6 +18,8 @@ fun AppCompatActivity.checkPermissions(
     requestCallback: RequestCallback
 ) {
     PermissionX.init(activity).permissions(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION,
         BLUETOOTH_CONNECT
     ).explainReasonBeforeRequest()
         .onExplainRequestReason { scope: ExplainScope, deniedList: List<String> ->

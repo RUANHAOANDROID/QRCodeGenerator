@@ -4,8 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     private val tvPort: TextView by lazy { findViewById(R.id.tvPort) }
     private val tvPostDIR: TextView by lazy { findViewById(R.id.tvPostDIR) }
     private val btnScanner: TextView by lazy { findViewById(R.id.btnScannaer) }
+    private val btnGetWiFi: TextView by lazy { findViewById(R.id.btnGetWiFi) }
 
     private val qrCodePopup: QRCodePopup by lazy {
         XPopup.Builder(this)
@@ -54,20 +57,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkPermissions(this) { allGranted, grantedList, deniedList ->
-            Toast.makeText(this, "如果拒绝", Toast.LENGTH_LONG).show()
             Log.d("CheckPermissions", "$allGranted,$grantedList,$deniedList")
         }
-
+        btnGetWiFi.setOnClickListener {
+            val wifiManager =
+                applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val wifiInfo = wifiManager.connectionInfo
+            tvSSID.text = wifiInfo.ssid.replace("\"", "", true)
+        }
         btnScanner.setOnClickListener {
-
-            Toast.makeText(this, "正在扫描", Toast.LENGTH_LONG).show()
             val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
             pairedDevices?.let { devices ->
                 val showData = Array(devices.size) { "" }
                 devices.forEachIndexed { index, bluetoothDevice ->
                     val deviceName = bluetoothDevice.name
                     val deviceHardwareAddress = bluetoothDevice.address // MAC address
-                    showData[index] = "${deviceName} ${deviceHardwareAddress}"
+                    showData[index] = "$deviceName $deviceHardwareAddress"
                 }
                 XPopup.Builder(this).autoDismiss(true).asCenterList(
                     "周边蓝牙设备", showData
