@@ -1,2 +1,2 @@
 # QRCodeGenerator
-二维码生成工具
+二维码快捷生成工具
