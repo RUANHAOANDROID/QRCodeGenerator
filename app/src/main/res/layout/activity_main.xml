@@ -4,67 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/imageQRCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+    tools:context=".ui.MainActivity">
 
     <Button
         android:id="@+id/btnWIFI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="WIFI"
-        app:layout_constraintBottom_toBottomOf="@+id/tvPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvSSID" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
     <Button
         android:id="@+id/btnBlueTools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
         android:text="蓝牙"
-        app:layout_constraintBottom_toBottomOf="@+id/tvBlueToolsMac"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvBlueToolsMac" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBlueToolsMac" />
 
     <Button
         android:id="@+id/btnVolumeUp"
-        android:layout_width="135dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="音量+"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPostDIR" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnServer" />
 
     <Button
         android:id="@+id/btnVolumeDown"
-        android:layout_width="136dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:text="音量-"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnVolumeUp" />
 
     <Button
         android:id="@+id/btnServer"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
         android:text="设置服务"
-        app:layout_constraintBottom_toBottomOf="@+id/tvPostDIR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvIP" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDIR" />
 
     <EditText
         android:id="@+id/tvSSID"
@@ -97,26 +85,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="输入蓝牙地址"
         android:inputType="textPersonName"
         android:text="dc0d307b2034"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnWIFI" />
 
     <EditText
         android:id="@+id/tvIP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="输入IP或域名"
         android:inputType="textPersonName"
         android:text="39.100.224.245"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBlueToolsMac" />
+        app:layout_constraintTop_toBottomOf="@+id/btnBlueTools" />
 
     <EditText
         android:id="@+id/tvPort"
@@ -133,14 +121,26 @@
 
     <EditText
         android:id="@+id/tvPostDIR"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="输入验票接口地址"
         android:inputType="textPersonName"
         android:text="/gateMachine/checkTicket"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPort" />
+
+    <Button
+        android:id="@+id/btnScannaer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="扫描蓝牙设备"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBlueToolsMac"
+        app:layout_constraintStart_toEndOf="@+id/tvBlueToolsMac"
+        app:layout_constraintTop_toTopOf="@+id/tvBlueToolsMac" />
 </androidx.constraintlayout.widget.ConstraintLayout>

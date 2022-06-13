@@ -1,40 +1,21 @@
-package com.hao.qrcodegenerator
+package com.hao.qrcodegenerator.utils
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.*
 
 /**
- * 生成Bitmap
+ * TODO
  * @date 2022/6/13
  * @author 锅得铁
  * @since v1.0
  */
-class MainViewModel : ViewModel() {
-    private val _bitmapLivaData = MutableLiveData<Bitmap>()
-
-    fun qrCodeGenerator(text: String) {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            val bitmap = generateImage(text)
-            _bitmapLivaData.postValue(bitmap)
-        }
-    }
-
-    fun getQRCodeImage(): LiveData<Bitmap> {
-        return _bitmapLivaData
-    }
-
-    private fun generateImage(text: String): Bitmap? {
+class QRCodeUtils {
+    suspend fun generateImage(text: String): Bitmap? {
         var qrImage: Bitmap? = null
         if (text.trim { it <= ' ' }.isEmpty()) {
             return null
