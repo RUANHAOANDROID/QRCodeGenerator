@@ -15,9 +15,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    signingConfigs {
+        single {
+            storeFile file('..//hao.keystore')
+            storePassword 'uchi2022'
+            keyPassword 'uchi2022'
+            keyAlias 'uchi'
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.single
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
